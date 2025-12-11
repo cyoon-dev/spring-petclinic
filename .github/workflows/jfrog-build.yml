@@ -3,6 +3,7 @@ name: JFrog CI
 on:
   push:
     branches: [ main ]
+workflow_dispatch:
     
 # Set env. variables
 env:
