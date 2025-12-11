@@ -25,3 +25,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      # 3. Compile, Test and Packing
+      - name: Build with Maven Wrapper
+        run: ./mvnw -B verify
