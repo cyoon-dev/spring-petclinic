@@ -1,4 +1,4 @@
-name: JFrog CI
+name: JFrog CI with Maven
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
 # Set env. variables
 env:
   IMAGE_NAME: petclinic
-  IMAGE_TAG: ${{ github.run_number }}
-  DOCKER_REPO: ${{ secrets.JF_URL }}/petclinic-docker-local
+  DOCKER_REGISTRY: ${{ secrets.JF_DOCKER_REGISTRY }}
+  DOCKER_REPO: petclinic-docker-local                   # Artifactory Docker local repo
 
 jobs:
   build-and-publish:
@@ -40,3 +40,24 @@ jobs:
       # 4. Compile, Test and Packing
       - name: Build with Maven Wrapper
         run: ./mvnw -B verify
+
+      # 5. Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }} \
+            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest \
+            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.actor }}-${{ github.sha }} \
+            .
+
+      # 6. Docker login to JFrog (Access Token recommended)
+      - name: Docker login to JFrog
+        run: |
+          echo "${{ secrets.JF_ACCESS_TOKEN }}" | docker login $DOCKER_REGISTRY \
+            -u "${{ secrets.JF_USERNAME }}" --password-stdin
+
+      # 7. Push Docer image to JFrog Artifactory
+      - name: Push Docker images
+        run: |
+          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.actor }}-${{ github.sha }}
+          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest
