@@ -1,0 +1,14 @@
+# JRE on base image
+FROM eclipse-temurin:17-jre-alpine
+
+# Set working dir
+WORKDIR /app
+
+# Copy Jar file
+COPY target/*.jar app.jar
+
+# Expore application port
+EXPOSE 8080
+
+# Execution commands
+ENTRYPOINT ["java", "-jar", "app.jar"]
