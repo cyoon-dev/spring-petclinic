@@ -26,6 +26,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # 3. Compile, Test and Packing
+      # 3. Cache Maven packages
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # 4. Compile, Test and Packing
       - name: Build with Maven Wrapper
         run: ./mvnw -B verify
