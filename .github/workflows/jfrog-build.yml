@@ -39,7 +39,7 @@ jobs:
 
       # 4. Compile, Test and Packing
       - name: Build with Maven Wrapper
-        run: ./mvnw -B verify
+        run: ./mvnw -B clean verify
 
       # 5. Build Docker image
       - name: Build Docker image
