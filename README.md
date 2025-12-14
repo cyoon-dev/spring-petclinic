@@ -1,4 +1,4 @@
-# Spring PetClinic CI/CD Pipeline (GitHub Actions, JFrog Artifactory + Xray) [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/cyoon-dev/spring-petclinic/actions/workflows/jfrog-ci-maven.yml/badge.svg))
+# Spring PetClinic CI/CD Pipeline (GitHub Actions, JFrog Artifactory + Xray) [![Build Status](https://github.com/cyoon-dev/spring-petclinic/actions/workflows/jfrog-ci-maven.yml/badge.svg))]
 
 This repository demonstrates a complete CI/CD pipeline for the Spring PetClinic project using **GitHub Actions** and **JFrog SaaS (Artifactory + Xray)**.
 
