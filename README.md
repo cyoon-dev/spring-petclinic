@@ -121,22 +121,23 @@ to Artifactory.
 
 #### Step 1: Create an Xray Security Policy
 
-1. Navigate to JFrog Platform → Xray → Policies
-2. Click Create Policy
+1. Navigate to JFrog Platform → Xray → Watches & Policies
+2. Click New Policy
 3. Select Security as the policy type
 4. Define rules, for example:
-   - Severity: High and above
-   - Include CVEs with or without fix versions
-5. Save the policy
+   - Rule type: CVEs
+   - Rule Category: Minimal Severity
+   - Select minimal severity: High
+6. Save the policy
 This policy defines what vulnerabilities should be detected and reported.
 
 #### Step 2: Create a Xray Watch
 
-1. Navigate to Xray → Watches
-2. Click Create Watch
+1. Navigate to JFrog Platform → Xray → Watches & Policies
+2. Click New Watch
 3. Select Repository as the watch target
 4. Choose the Docker repository: (e.g. petclinic-docker-local)
-5. Attach the previously created Security Policy
+5. Attach the previously created Security Policy (e.g. petclinic-security-policy)
 6. Save the watch
 Once configured, any Docker image pushed to this repository is automatically scanned.
 
