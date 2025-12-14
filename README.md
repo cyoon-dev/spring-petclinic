@@ -91,7 +91,7 @@ with JFrog.
 
 ## Command to Obtain and Run the Docker Image
 
-1. Export Environment variables
+1. Export environment variables
 ```bash
 export JF_DOCKER_REGISTRY=<your-company>.jfrog.io
 export JF_USERNAME=<your-jfrog-username>
