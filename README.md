@@ -110,7 +110,7 @@ After starting the container, the application is accessible at:
 ```
 http://localhost:8080
 ```
-
+![Petclinic Landing Page](docs/images/petclinic_landing_page.png)
 
 ## JFrog Xray Scan Generation Process
 
@@ -145,6 +145,7 @@ When the CI pipeline pushes the Docker image to Artifactory:
 * Xray automatically scans the image
 * Vulnerabilities are evaluated against the configured policy
 * Scan results become available in Xray → Scans List → Artifacts
+![Xray List](docs/images/jfrog_xray_scansList.png)
 
 ## Image Tagging
 
