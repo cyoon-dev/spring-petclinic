@@ -47,7 +47,6 @@ jobs:
           docker build \
             -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }} \
             -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest \
-            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.actor }}-${{ github.sha }} \
             .
 
       # 6. Docker login to JFrog (Access Token recommended)
