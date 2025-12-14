@@ -58,5 +58,5 @@ jobs:
       # 7. Push Docer image to JFrog Artifactory
       - name: Push Docker images
         run: |
-          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.actor }}-${{ github.sha }}
+          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }}
           docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest
