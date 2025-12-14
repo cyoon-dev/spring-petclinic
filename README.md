@@ -22,6 +22,9 @@ The GitHub Actions workflow is defined in:
 The pipeline is triggered on every push to the `main` branch or manually via
 `workflow_dispatch` and performs the following steps:
 
+> Note: In the GitHub Actions workflow, the `DOCKER_REGISTRY` environment variable
+> is populated from the `JF_DOCKER_REGISTRY` GitHub secret.
+
 1. Check out source code from GitHub
 2. Set up Java 17
 3. (Optional) Cache Maven dependencies to improve build performance
