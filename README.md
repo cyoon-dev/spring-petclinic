@@ -118,7 +118,7 @@ http://localhost:8080
 
 ## JFrog Xray Scan Generation Process
 
-### JFrog Xray: Poclity & Watch Configuration
+### JFrog Xray: Policy & Watch Configuration
 
 JFrog Xray is configured to automatically scan Docker images when they are pushed
 to Artifactory.
@@ -145,7 +145,7 @@ This policy defines what vulnerabilities should be detected and reported.
 6. Save the watch
 Once configured, any Docker image pushed to this repository is automatically scanned.
 
-#### Step 3: Automatic Sacn on Image Push
+#### Step 3: Automatic Scan on Image Push
 When the CI pipeline pushes the Docker image to Artifactory:
 * Xray automatically scans the image
 * Vulnerabilities are evaluated against the configured policy
