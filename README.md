@@ -28,6 +28,7 @@ The pipeline is triggered on every push to the `main` branch or manually via
 4. Build and test the application using Maven Wrapper
    ```bash
    ./mvnw -B clean verify
+   ```
 5. Build a runnable Docker image
    ```bash
    docker build \
