@@ -34,14 +34,17 @@ The pipeline is triggered on every push to the `main` branch or manually via
      -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }} \
      -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest \
      .
+   ```
 6. Authenticate to JFrog Artifactory using an Access Token
    ```bash
    echo "${{ secrets.JF_ACCESS_TOKEN }}" | docker login $DOCKER_REGISTRY \
      -u "${{ secrets.JF_USERNAME }}" --password-stdin
+   ```
 7. Push the Docker image to JFrog Artifactory
    ```bash
    docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }}
    docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest
+   ```
 
 This ensures the application is always built, tested, and published in a consistent
 and automated manner.
