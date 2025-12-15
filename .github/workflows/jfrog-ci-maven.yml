@@ -2,9 +2,9 @@ name: JFrog CI with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ nr ]
   workflow_dispatch:
-    
+
 # Set env. variables
 env:
   IMAGE_NAME: petclinic
@@ -41,7 +41,16 @@ jobs:
       - name: Build with Maven Wrapper
         run: ./mvnw -B clean verify
 
+      # 4.1. Download New Relic Java Agent
+      # Before starting the Docker build, download the agent and unzip it into a 'newrelic' folder within the build context (current folder).
+      - name: Prepare New Relic Agent
+        run: |
+          curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip
+          unzip newrelic-java.zip
+          rm newrelic-java.zip
+
       # 5. Build Docker image
+      # the 'newrelic' folder is in context. COPY it from our Dockerfile.
       - name: Build Docker image
         run: |
           docker build \
@@ -55,8 +64,8 @@ jobs:
           echo "${{ secrets.JF_ACCESS_TOKEN }}" | docker login $DOCKER_REGISTRY \
             -u "${{ secrets.JF_USERNAME }}" --password-stdin
 
-      # 7. Push Docer image to JFrog Artifactory
-      - name: Push Docker images
+      # 7. Push Docker image
+      - name: Push Docker image
         run: |
           docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }}
           docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest
