@@ -10,6 +10,10 @@ env:
   IMAGE_NAME: petclinic
   DOCKER_REGISTRY: ${{ secrets.JF_DOCKER_REGISTRY }}
   DOCKER_REPO: petclinic-docker-local                   # Artifactory Docker local repo
+  # env variables for New Relic Java Agent
+  NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+  NEW_RELIC_APP_NAME: SpringPetClinic-Docker
+  NEW_RELIC_LOG_FILE_NAME: STDOUT
 
 jobs:
   build-and-publish:
