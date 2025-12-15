@@ -1,12 +1,11 @@
 services:
   petclinic:
-    image: ${DOCKER_REGISTRY}/petclinic-docker-local/petclinic:nr-latest
+    image: ${DOCKER_REGISTRY}/petclinic-docker-local/petclinic:latest
     ports:
       - "8080:8080"
     environment:
       - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_APP_NAME=SpringPetClinic-Docker
-      - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
   mysql:
     image: mysql:9.5
     ports:

@@ -9,11 +9,8 @@ on:
 env:
   IMAGE_NAME: petclinic
   DOCKER_REGISTRY: ${{ secrets.JF_DOCKER_REGISTRY }}
-  DOCKER_REPO: petclinic-docker-local                   # Artifactory Docker local repo
-  # env variables for New Relic Java Agent
-  NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
-  NEW_RELIC_APP_NAME: SpringPetClinic-Docker
-  NEW_RELIC_LOG_FILE_NAME: STDOUT
+  DOCKER_REPO: petclinic-docker-local                           # Artifactory Docker local repo
+  NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}   # New Relic License Key (used in docker-compose.yml)
 
 jobs:
   build-and-publish:
@@ -50,7 +47,7 @@ jobs:
         run: |
           docker build \
             -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }} \
-            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:nr-latest \
+            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:nr \
             .
 
       # 6. Docker login to JFrog (Access Token recommended)
@@ -63,4 +60,4 @@ jobs:
       - name: Push Docker image
         run: |
           docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }}
-          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:nr-latest
+          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:nr
