@@ -59,7 +59,7 @@ jobs:
         run: |
           docker build \
             -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }} \
-            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest \
+            -t $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:nr-latest \
             .
 
       # 6. Docker login to JFrog (Access Token recommended)
@@ -72,4 +72,4 @@ jobs:
       - name: Push Docker image
         run: |
           docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:${{ github.sha }}
-          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:latest
+          docker push $DOCKER_REGISTRY/$DOCKER_REPO/$IMAGE_NAME:nr-latest
