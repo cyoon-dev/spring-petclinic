@@ -45,16 +45,7 @@ jobs:
       - name: Build with Maven Wrapper
         run: ./mvnw -B clean verify
 
-      # 4.1. Download New Relic Java Agent
-      # Before starting the Docker build, download the agent and unzip it into a 'newrelic' folder within the build context (current folder).
-      - name: Prepare New Relic Agent
-        run: |
-          curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip
-          unzip newrelic-java.zip
-          rm newrelic-java.zip
-
       # 5. Build Docker image
-      # the 'newrelic' folder is in context. COPY it from our Dockerfile.
       - name: Build Docker image
         run: |
           docker build \
